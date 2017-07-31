@@ -3,6 +3,7 @@
 <resources>
 
     <string name="app_name">Posts (Kotlin)</string>
+    <string name="activity_label">Posts</string>
 
     <string name="action_settings">Settings</string>
 

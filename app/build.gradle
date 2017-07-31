@@ -30,6 +30,7 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode app.major * 10000 + app.minor * 1000 + app.patch * 100 + app.build
         versionName "${app.major}.${app.minor}.${app.patch}"
+        vectorDrawables.useSupportLibrary = true // For vector image support.
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
