@@ -1,0 +1,17 @@
+// LINT ************************************************************************************************************************************
+
+android { // Lint checks. See https://developer.android.com/studio/write/lint.html
+
+    lintOptions {
+        abortOnError true
+        checkAllWarnings true
+        ignoreWarnings false
+        checkReleaseBuilds true
+        warningsAsErrors true
+        lintConfig file("config/lint/lint.xml")
+        htmlReport true
+        xmlReport true
+        disable 'MissingRegistered', 'UnusedResources', 'UnusedIds', 'IconExpectedSize'
+    }
+
+}

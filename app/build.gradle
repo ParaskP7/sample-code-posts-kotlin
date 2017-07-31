@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.ben-manes.versions'
 
+apply from: 'config/gradle/quality.gradle'
+
 dependencyUpdates.resolutionStrategy = {
     componentSelection { rules ->
         rules.all { ComponentSelection selection ->
@@ -35,17 +37,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    lintOptions {
-        abortOnError true
-        checkAllWarnings true
-        ignoreWarnings false
-        checkReleaseBuilds true
-        warningsAsErrors true
-        disable 'UnusedResources', 'UnusedIds', 'IconExpectedSize', 'MissingRegistered'
-        htmlReport true
-        xmlReport true
     }
 
 }
