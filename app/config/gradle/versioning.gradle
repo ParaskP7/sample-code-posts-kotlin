@@ -28,6 +28,9 @@ ext.versions = [
         supportLibrary  : '26.0.0',
         constraintLayout: '1.0.2',
 
+        // Logging
+        timber          : '4.5.1',
+
         // TEST IMPLEMENTATION // **********************************************************************************************************
 
         // Test
@@ -54,8 +57,8 @@ ext.deps = [
                 'design'          : "com.android.support:design:$versions.supportLibrary",
         ],
 
-        'firebase'   : [
-                'database': "com.google.firebase:firebase-database:${versions.firebaseDatabase}",
+        'logging'    : [
+                'timber': "com.jakewharton.timber:timber:$versions.timber",
         ],
 
         // TEST IMPLEMENTATION // **********************************************************************************************************
