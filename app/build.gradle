@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.ben-manes.versions'
 
 apply from: 'config/gradle/quality.gradle'
+apply from: 'config/gradle/jacoco.gradle'
 
 dependencyUpdates.resolutionStrategy = {
     componentSelection { rules ->

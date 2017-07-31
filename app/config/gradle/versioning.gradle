@@ -10,6 +10,9 @@ ext.app = [
 
 ext.versions = [
 
+        // Quality Plugins
+        jacocoPlugin    : '0.7.9',
+
         // Build
         minSdk          : 15,
         targetSdk       : 26,
