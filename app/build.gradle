@@ -1,19 +1,18 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
     defaultConfig {
         applicationId "io.petros.posts.kotlin"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode app.major * 10000 + app.minor * 1000 + app.patch * 100 + app.build
+        versionName "${app.major}.${app.minor}.${app.patch}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,16 +38,14 @@ android {
 
 dependencies {
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.jre
+    implementation deps.support.appCompat
+    implementation deps.support.constraintLayout
+    implementation deps.support.design
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation "com.android.support:design:$support_library_version"
+    testImplementation deps.test.junit
 
-    testImplementation 'junit:junit:4.12'
-
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation(deps.androidTest.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 

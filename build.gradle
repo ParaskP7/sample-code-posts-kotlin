@@ -1,18 +1,20 @@
+apply from: 'app/config/gradle/versioning.gradle'
+
 buildscript {
 
-    ext.android_plugin_version = '3.0.0-alpha8'
-    ext.kotlin_version = '1.1.3-2'
-    ext.support_library_version = '26.0.0'
+    ext.kotlinPluginVersion = '1.1.3-2'
+    ext.androidPluginVersion = '3.0.0-alpha8'
 
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
 
-        classpath "com.android.tools.build:gradle:$android_plugin_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinPluginVersion"
+        classpath "com.android.tools.build:gradle:$androidPluginVersion"
 
     }
 
@@ -26,8 +28,4 @@ allprojects {
         mavenCentral()
     }
 
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
