@@ -17,8 +17,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            Snackbar.make(it, "Lambda snackbar action a la Kotlin...", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            Snackbar.make(it, R.string.snackbar_text, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.snackbar_action_text, {})
+                    .show()
         }
     }
 
@@ -31,4 +32,5 @@ class MainActivity : AppCompatActivity() {
         R.id.action_settings -> true
         else -> super.onOptionsItemSelected(item)
     }
+
 }

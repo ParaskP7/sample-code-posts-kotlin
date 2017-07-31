@@ -9,4 +9,7 @@
 
     <string name="hello_kotlin">Hello Kotlin!</string>
 
+    <string name="snackbar_text">Lambda snackbar action a la Kotlin…</string>
+    <string name="snackbar_action_text">OK</string>
+
 </resources>
