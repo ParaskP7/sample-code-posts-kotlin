@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<lint/>
+<lint>
+
+    <!--This file is a convinience file containing all the material colors. The project is not using all of them.-->
+    <issue id="UnusedResources">
+        <ignore path="src\main\res\values\colors__material_design.xml"/>
+    </issue>
+
+</lint>
