@@ -10,6 +10,9 @@ ext.app = [
 
 ext.versions = [
 
+        // Plugins
+        androidPlugin   : '3.0.0-alpha8',
+
         // Quality Plugins
         jacocoPlugin    : '0.7.9',
 
@@ -55,6 +58,10 @@ ext.deps = [
                 'appCompat'       : "com.android.support:appcompat-v7:$versions.supportLibrary",
                 'constraintLayout': "com.android.support.constraint:constraint-layout:$versions.constraintLayout",
                 'design'          : "com.android.support:design:$versions.supportLibrary",
+        ],
+
+        'databinding': [
+                'compiler': "com.android.databinding:compiler:$versions.androidPlugin", // The compiler version must be the same as gradle.
         ],
 
         'logging'    : [

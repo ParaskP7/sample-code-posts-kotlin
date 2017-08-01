@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.ben-manes.versions'
 
 apply from: 'config/gradle/quality.gradle'
@@ -41,6 +42,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -49,6 +54,7 @@ dependencies {
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
     implementation deps.support.design
+    kapt deps.databinding.compiler
     implementation deps.logging.timber
 
     testImplementation deps.test.junit
