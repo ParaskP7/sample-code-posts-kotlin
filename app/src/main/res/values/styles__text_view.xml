@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- ITEM VIEW // *************************************************************************************************** -->
+
+    <style name="TextView.ItemView" parent="">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">@dimen/item_view__text_view__layout_margin</item>
+        <item name="android:layout_marginRight">@dimen/item_view__text_view__layout_margin</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+    </style>
+
+</resources>

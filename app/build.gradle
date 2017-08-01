@@ -54,6 +54,7 @@ dependencies {
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
     implementation deps.support.design
+    implementation deps.support.cardView
     kapt deps.databinding.compiler
     implementation deps.logging.timber
 
