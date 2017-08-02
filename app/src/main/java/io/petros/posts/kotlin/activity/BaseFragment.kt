@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import io.petros.posts.kotlin.activity.viewmodel.ViewModel
 import timber.log.Timber
 
-abstract class BaseFragment<VIEW_DATA_BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> : Fragment() {
+abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> : Fragment() {
 
-    protected lateinit var binding: VIEW_DATA_BINDING
+    protected lateinit var binding: BINDING
     protected lateinit var viewModel: VIEW_MODEL
 
     // LIFECYCLE // ************************************************************************************************************************
@@ -41,7 +41,7 @@ abstract class BaseFragment<VIEW_DATA_BINDING : ViewDataBinding, VIEW_MODEL : Vi
         binding = constructViewDataBinding()
     }
 
-    protected abstract fun constructViewDataBinding(): VIEW_DATA_BINDING
+    protected abstract fun constructViewDataBinding(): BINDING
 
     private fun setViewModel() {
         viewModel = constructViewModel()
