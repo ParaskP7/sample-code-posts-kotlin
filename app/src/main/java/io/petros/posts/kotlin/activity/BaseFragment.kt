@@ -2,17 +2,22 @@ package io.petros.posts.kotlin.activity
 
 import android.app.Fragment
 import android.content.Context
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.petros.posts.kotlin.activity.viewmodel.ViewModel
 import timber.log.Timber
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<VIEW_DATA_BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> : Fragment() {
+
+    protected lateinit var binding: VIEW_DATA_BINDING
+    protected lateinit var viewModel: VIEW_MODEL
 
     // LIFECYCLE // ************************************************************************************************************************
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         Timber.d("%s attached.", javaClass.simpleName)
     }
@@ -22,18 +27,35 @@ abstract class BaseFragment : Fragment() {
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(getLayoutId(), container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val view = inflater.inflate(getLayoutId(), container, false)
+        setViewDataBinding()
+        setViewModel()
         Timber.d("%s create view. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
         return view
     }
 
     protected abstract fun getLayoutId(): Int
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) { // After that the activity is created.
+    private fun setViewDataBinding() {
+        binding = constructViewDataBinding()
+    }
+
+    protected abstract fun constructViewDataBinding(): VIEW_DATA_BINDING
+
+    private fun setViewModel() {
+        viewModel = constructViewModel()
+    }
+
+    protected abstract fun constructViewModel(): VIEW_MODEL
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // After that the activity is created.
         super.onViewCreated(view, savedInstanceState)
+        bindViewModel()
         Timber.d("%s view created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
+
+    protected abstract fun bindViewModel()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

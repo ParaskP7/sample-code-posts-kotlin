@@ -1,4 +1,4 @@
-package io.petros.posts.kotlin.activity.main
+package io.petros.posts.kotlin.activity.main.viewmodel
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView

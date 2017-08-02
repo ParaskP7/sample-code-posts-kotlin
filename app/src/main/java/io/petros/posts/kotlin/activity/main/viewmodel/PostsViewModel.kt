@@ -1,10 +1,11 @@
-package io.petros.posts.kotlin.activity.main
+package io.petros.posts.kotlin.activity.main.viewmodel
 
 import android.databinding.BaseObservable
 import android.databinding.ObservableArrayList
+import io.petros.posts.kotlin.activity.viewmodel.ViewModel
 import io.petros.posts.kotlin.model.Post
 
-class PostsViewModel : BaseObservable() {
+class PostsViewModel : BaseObservable(), ViewModel {
 
     val posts = ObservableArrayList<Post>()
 

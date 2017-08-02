@@ -9,8 +9,8 @@
     <data>
 
         <variable
-            name="postsViewModel"
-            type="io.petros.posts.kotlin.activity.main.PostsViewModel"/>
+            name="viewModel"
+            type="io.petros.posts.kotlin.activity.main.viewmodel.PostsViewModel"/>
 
     </data>
 
@@ -22,7 +22,7 @@
             android:id="@+id/postsRecyclerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:items="@{postsViewModel.posts}"
+            android:items="@{viewModel.posts}"
             app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
