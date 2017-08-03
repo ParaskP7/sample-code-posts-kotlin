@@ -3,7 +3,7 @@ package io.petros.posts.kotlin.activity.main
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import butterknife.OnClick
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseActivity
 import io.petros.posts.kotlin.extension.snack
@@ -16,15 +16,10 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFragment(R.id.fragment)
-        setFab()
     }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
-    }
-
-    private fun setFab() {
-        fab.setOnClickListener(View::snack)
     }
 
     // MENU // *****************************************************************************************************************************
@@ -37,6 +32,13 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_settings -> true
         else -> super.onOptionsItemSelected(item)
+    }
+
+    // CLICK EVENTS // *********************************************************************************************************************
+
+    @OnClick(R.id.fab)
+    internal fun onFabClick() {
+        fab.snack()
     }
 
 }

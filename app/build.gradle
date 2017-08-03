@@ -56,6 +56,8 @@ dependencies {
     implementation deps.support.design
     implementation deps.support.cardView
     kapt deps.databinding.compiler
+    implementation deps.butterKnife.runtime
+    kapt deps.butterKnife.compiler
     implementation deps.logging.timber
 
     testImplementation deps.test.junit

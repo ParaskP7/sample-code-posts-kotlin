@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import butterknife.ButterKnife
 import io.petros.posts.kotlin.activity.viewmodel.ViewModel
 import timber.log.Timber
 
@@ -31,6 +32,7 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
         val view = inflater.inflate(getLayoutId(), container, false)
         setBinding()
         setViewModel()
+        setButterKnife(view)
         Timber.d("%s create view. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
         return view
     }
@@ -48,6 +50,10 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
     }
 
     protected abstract fun constructViewModel(): VIEW_MODEL
+
+    private fun setButterKnife(view: View) {
+        ButterKnife.bind(this, view)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // After that the activity is created.
         super.onViewCreated(view, savedInstanceState)

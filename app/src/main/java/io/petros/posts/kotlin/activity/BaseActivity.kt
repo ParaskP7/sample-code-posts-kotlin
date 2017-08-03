@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.CallSuper
 import android.support.v7.app.AppCompatActivity
+import butterknife.ButterKnife
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -15,11 +16,16 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        setButterKnife()
         setToolbar()
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
 
     protected abstract fun getLayoutId(): Int
+
+    private fun setButterKnife() {
+        ButterKnife.bind(this)
+    }
 
     private fun setToolbar() {
         setSupportActionBar(toolbar)
