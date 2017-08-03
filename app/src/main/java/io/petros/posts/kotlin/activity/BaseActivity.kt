@@ -3,7 +3,6 @@ package io.petros.posts.kotlin.activity
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.CallSuper
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import kotlinx.android.synthetic.main.activity_main.*
@@ -56,7 +55,6 @@ abstract class BaseActivity : AppCompatActivity() {
         Timber.d("%s resumed.", javaClass.simpleName)
     }
 
-    @CallSuper
     override fun onPause() {
         Timber.d("%s paused.", javaClass.simpleName)
         super.onPause()
@@ -79,9 +77,15 @@ abstract class BaseActivity : AppCompatActivity() {
 
     // FRAGMENT // *************************************************************************************************************************
 
-    protected fun setFragment(containerViewId: Int) {
+    protected fun addFragment(fragmentId: Int) {
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(containerViewId, Fragment())
+        fragmentTransaction.add(fragmentId, Fragment())
+        fragmentTransaction.commit()
+    }
+
+    protected fun removeFragment(fragmentId: Int) {
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.remove(fragmentManager.findFragmentById(fragmentId))
         fragmentTransaction.commit()
     }
 

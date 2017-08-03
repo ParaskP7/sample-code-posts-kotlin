@@ -15,11 +15,16 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setFragment(R.id.fragment)
+        addFragment(R.id.fragment)
     }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
+    }
+
+    override fun onPause() {
+        removeFragment(R.id.fragment)
+        super.onPause()
     }
 
     // MENU // *****************************************************************************************************************************
