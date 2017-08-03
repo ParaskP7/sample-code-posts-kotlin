@@ -1,6 +1,6 @@
 package io.petros.posts.kotlin.activity
 
-import android.app.Fragment
+import android.annotation.SuppressLint
 import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -8,13 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
-import io.petros.posts.kotlin.activity.viewmodel.ViewModel
+import com.github.salomonbrys.kodein.android.KodeinFragment
 import timber.log.Timber
 
-abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> : Fragment() {
+abstract class BaseFragment<BINDING : ViewDataBinding> : KodeinFragment() {
 
     protected lateinit var binding: BINDING
-    protected lateinit var viewModel: VIEW_MODEL
 
     // LIFECYCLE // ************************************************************************************************************************
 
@@ -23,6 +22,7 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
         Timber.d("%s attached.", javaClass.simpleName)
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
@@ -31,7 +31,6 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(getLayoutId(), container, false)
         setBinding()
-        setViewModel()
         setButterKnife(view)
         Timber.d("%s create view. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
         return view
@@ -40,16 +39,10 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
     protected abstract fun getLayoutId(): Int
 
     private fun setBinding() {
-        binding = constructViewDataBinding()
+        binding = constructBinding()
     }
 
-    protected abstract fun constructViewDataBinding(): BINDING
-
-    private fun setViewModel() {
-        viewModel = constructViewModel()
-    }
-
-    protected abstract fun constructViewModel(): VIEW_MODEL
+    protected abstract fun constructBinding(): BINDING
 
     private fun setButterKnife(view: View) {
         ButterKnife.bind(this, view)
@@ -103,6 +96,7 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
         super.onDestroyView()
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onDestroy() {
         Timber.d("%s destroyed.", javaClass.simpleName)
         super.onDestroy()

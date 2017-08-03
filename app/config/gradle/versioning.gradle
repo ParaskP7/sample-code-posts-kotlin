@@ -32,6 +32,7 @@ ext.versions = [
         constraintLayout: '1.0.2',
 
         // Important
+        kodein          : '4.1.0',
         butterKnife     : '8.7.0',
 
         // Logging
@@ -64,13 +65,18 @@ ext.deps = [
                 'cardView'        : "com.android.support:cardview-v7:$versions.supportLibrary",
         ],
 
+        'databinding': [
+                'compiler': "com.android.databinding:compiler:$versions.androidPlugin", // The compiler version must be the same as gradle.
+        ],
+
+        'kodein'     : [
+                'runtime': "com.github.salomonbrys.kodein:kodein:${versions.kodein}",
+                'android': "com.github.salomonbrys.kodein:kodein-android:${versions.kodein}",
+        ],
+
         'butterKnife': [
                 'runtime' : "com.jakewharton:butterknife:$versions.butterKnife",
                 'compiler': "com.jakewharton:butterknife-compiler:$versions.butterKnife",
-        ],
-
-        'databinding': [
-                'compiler': "com.android.databinding:compiler:$versions.androidPlugin", // The compiler version must be the same as gradle.
         ],
 
         'logging'    : [

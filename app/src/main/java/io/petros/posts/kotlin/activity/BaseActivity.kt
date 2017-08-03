@@ -1,17 +1,19 @@
 package io.petros.posts.kotlin.activity
 
+import android.annotation.SuppressLint
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
+import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : KodeinAppCompatActivity() {
 
     // LIFECYCLE // ************************************************************************************************************************
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
@@ -70,6 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onStop()
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onDestroy() {
         Timber.d("%s destroyed.", javaClass.simpleName)
         super.onDestroy()
