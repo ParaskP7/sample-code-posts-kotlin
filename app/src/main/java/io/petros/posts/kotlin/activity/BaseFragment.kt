@@ -29,7 +29,7 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(getLayoutId(), container, false)
-        setViewDataBinding()
+        setBinding()
         setViewModel()
         Timber.d("%s create view. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
         return view
@@ -37,7 +37,7 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : ViewModel> :
 
     protected abstract fun getLayoutId(): Int
 
-    private fun setViewDataBinding() {
+    private fun setBinding() {
         binding = constructViewDataBinding()
     }
 

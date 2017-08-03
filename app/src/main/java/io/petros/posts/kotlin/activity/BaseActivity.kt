@@ -1,5 +1,6 @@
 package io.petros.posts.kotlin.activity
 
+import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.CallSuper
@@ -68,6 +69,14 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         Timber.d("%s destroyed.", javaClass.simpleName)
         super.onDestroy()
+    }
+
+    // FRAGMENT // *************************************************************************************************************************
+
+    protected fun setFragment(containerViewId: Int) {
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(containerViewId, Fragment())
+        fragmentTransaction.commit()
     }
 
 }

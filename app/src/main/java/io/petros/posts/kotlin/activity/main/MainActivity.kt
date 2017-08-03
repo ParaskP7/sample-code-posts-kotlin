@@ -1,11 +1,12 @@
 package io.petros.posts.kotlin.activity.main
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseActivity
+import io.petros.posts.kotlin.extension.snack
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -14,6 +15,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setFragment(R.id.fragment)
         setFab()
     }
 
@@ -22,11 +24,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setFab() {
-        fab.setOnClickListener {
-            Snackbar.make(it, R.string.snackbar_text, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.snackbar_action_text, {})
-                    .show()
-        }
+        fab.setOnClickListener(View::snack)
     }
 
     // MENU // *****************************************************************************************************************************
