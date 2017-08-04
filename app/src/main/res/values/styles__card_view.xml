@@ -2,7 +2,7 @@
 
 <resources>
 
-    <!-- ITEM VIEW // *************************************************************************************************** -->
+    <!-- ITEM VIEW // ****************************************************************************************************************** -->
 
     <style name="CardView.ItemView" parent="">
         <item name="android:layout_margin">@dimen/item_view__card_view__layout_margin</item>

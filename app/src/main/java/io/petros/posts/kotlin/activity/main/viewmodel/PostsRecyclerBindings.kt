@@ -8,6 +8,6 @@ import io.petros.posts.kotlin.model.Post
 fun setPostsBinding(postsRecyclerView: RecyclerView, posts: List<Post>) {
     val adapter = postsRecyclerView.adapter
     if (adapter is PostsAdapter) {
-        adapter.reloadAdapter(posts)
+        adapter.setData(posts)
     }
 }

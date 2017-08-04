@@ -17,8 +17,8 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        setButterKnife()
         setToolbar()
+        setButterKnife()
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
 
@@ -26,10 +26,6 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
 
     private fun setButterKnife() {
         ButterKnife.bind(this)
-    }
-
-    private fun setToolbar() {
-        setSupportActionBar(toolbar)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -76,6 +72,12 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
     override fun onDestroy() {
         Timber.d("%s destroyed.", javaClass.simpleName)
         super.onDestroy()
+    }
+
+    // TOOLBAR // **************************************************************************************************************************
+
+    private fun setToolbar() {
+        setSupportActionBar(toolbar)
     }
 
     // FRAGMENT // *************************************************************************************************************************

@@ -8,11 +8,11 @@ import io.petros.posts.kotlin.activity.BaseFragment
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsViewModel
 import io.petros.posts.kotlin.databinding.FragmentMainBinding
-import io.petros.posts.kotlin.extension.toast
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    private val postsViewModel: PostsViewModel by injector.instance()
+    private val postsViewModel: PostsViewModel by instance()
+    private val postsAdapter: PostsAdapter by instance()
 
     // CONTRACT // *************************************************************************************************************************
 
@@ -32,9 +32,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun setRecyclerView() {
-        binding.postsRecyclerView.adapter = PostsAdapter {
-            toast("${it.title} Clicked")
-        }
+        binding.postsRecyclerView.adapter = postsAdapter
     }
 
     override fun onResume() {

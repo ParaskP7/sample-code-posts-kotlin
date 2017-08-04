@@ -35,6 +35,13 @@ ext.versions = [
         kodein          : '4.1.0',
         butterKnife     : '8.7.0',
 
+        // ReactiveX
+        rxAndroid       : '2.0.1',
+        rxJava          : '2.1.2',
+
+        // Network
+        retrofit        : '2.3.0',
+
         // Logging
         timber          : '4.5.1',
 
@@ -77,6 +84,17 @@ ext.deps = [
         'butterKnife': [
                 'runtime' : "com.jakewharton:butterknife:$versions.butterKnife",
                 'compiler': "com.jakewharton:butterknife-compiler:$versions.butterKnife",
+        ],
+
+        'rx'         : [
+                'java'   : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+                'android': "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        ],
+
+        'retrofit'   : [
+                'runtime'      : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+                'converterGson': "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+                'rx'           : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
         ],
 
         'logging'    : [

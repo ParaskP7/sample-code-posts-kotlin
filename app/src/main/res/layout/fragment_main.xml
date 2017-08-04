@@ -10,16 +10,19 @@
 
     </data>
 
+    <!-- The android:layout_marginTop"?attr/actionBarSize" is necessary because the
+         app:layout_behavior="@string/appbar_scrolling_view_behavior" is being ignored due to the data binding <layout> element. -->
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
         tools:context="io.petros.posts.kotlin.activity.main.MainFragment">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/postsRecyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:items="@{viewModel.posts}"
             app:layoutManager="android.support.v7.widget.StaggeredGridLayoutManager"

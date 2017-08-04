@@ -18,7 +18,7 @@ class PostsAdapter(val listener: (Post) -> Unit) : RecyclerView.Adapter<PostsAda
 
     override fun getItemCount(): Int = allPosts.size
 
-    fun reloadAdapter(posts: List<Post>) {
+    fun setData(posts: List<Post>) {
         allPosts.clear()
         allPosts.addAll(posts)
         notifyDataSetChanged()
@@ -26,7 +26,7 @@ class PostsAdapter(val listener: (Post) -> Unit) : RecyclerView.Adapter<PostsAda
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(post: Post, listener: (Post) -> Unit) = with(itemView) {
-            postIdTextView.text = post.id.toString()
+            postIdTextView.text = post.id
             postTitleTextView.text = post.title
             setOnClickListener { listener(post) }
         }

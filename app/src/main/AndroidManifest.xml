@@ -4,6 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.petros.posts.kotlin">
 
+    <!--PERMISSIONS // ***************************************************************************************************************** -->
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!--APPLICATION // ***************************************************************************************************************** -->
+
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -13,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <!--ACTIVITIES // ************************************************************************************************************** -->
 
         <activity
             android:name=".activity.main.MainActivity"

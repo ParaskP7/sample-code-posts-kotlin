@@ -3,8 +3,13 @@ package io.petros.posts.kotlin
 import android.app.Application
 import android.support.v7.app.AppCompatDelegate
 import com.github.salomonbrys.kodein.*
+import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsViewModel
-
+import io.petros.posts.kotlin.app.constructPostsAdapter
+import io.petros.posts.kotlin.app.constructRetrofitService
+import io.petros.posts.kotlin.app.constructRxSchedulers
+import io.petros.posts.kotlin.service.retrofit.RetrofitService
+import io.petros.posts.kotlin.util.rx.RxSchedulers
 import timber.log.Timber
 
 class App : Application(), KodeinAware {
@@ -15,9 +20,16 @@ class App : Application(), KodeinAware {
         }
     }
 
+    // DEPENDENCY INJECTION // *************************************************************************************************************
+
     override val kodein by Kodein.lazy {
-        bind<PostsViewModel>() with instance(PostsViewModel())
+        bind<RxSchedulers>() with instance(constructRxSchedulers())
+        bind<RetrofitService>() with instance(constructRetrofitService(applicationContext))
+        bind<PostsViewModel>() with singleton { PostsViewModel(kodein) }
+        bind<PostsAdapter>() with instance(constructPostsAdapter(applicationContext))
     }
+
+    // LIFECYCLE // ************************************************************************************************************************
 
     override fun onCreate() {
         super.onCreate()

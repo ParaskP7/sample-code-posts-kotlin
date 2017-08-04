@@ -2,12 +2,9 @@
 
 <resources>
 
+    <!-- APPLICATION // **************************************************************************************************************** -->
+
     <string name="app_name">Posts (Kotlin)</string>
-    <string name="activity_label">Posts</string>
-
-    <string name="action_settings">Settings</string>
-
-    <string name="snackbar_text">Lambda snackbar action a la Kotlin…</string>
-    <string name="snackbar_action_text">OK</string>
+    <string name="posts_url">http://jsonplaceholder.typicode.com</string>
 
 </resources>

@@ -60,6 +60,11 @@ dependencies {
     implementation deps.kodein.android
     implementation deps.butterKnife.runtime
     kapt deps.butterKnife.compiler
+    implementation deps.rx.java
+    implementation deps.rx.android
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.converterGson
+    implementation deps.retrofit.rx
     implementation deps.logging.timber
 
     testImplementation deps.test.junit

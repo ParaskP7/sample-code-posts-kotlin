@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- ACTIVITY // ******************************************************************************************************************* -->
+
+    <dimen name="activity__fab__layout_margin">16dp</dimen>
+
+</resources>
