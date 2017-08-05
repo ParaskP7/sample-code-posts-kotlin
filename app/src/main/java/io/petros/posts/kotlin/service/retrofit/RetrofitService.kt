@@ -10,12 +10,12 @@ import retrofit2.http.Query
 interface RetrofitService {
 
     @GET("/posts")
-    abstract fun posts(): Observable<List<Post>>
+    fun posts(): Observable<List<Post>>
 
     @GET("/users")
-    abstract fun users(): Observable<List<User>>
+    fun users(): Observable<List<User>>
 
     @GET("/comments")
-    abstract fun comments(@Query("postId") postId: Int): Observable<List<Comment>>
+    fun comments(@Query("postId") postId: Int): Observable<List<Comment>>
 
 }
