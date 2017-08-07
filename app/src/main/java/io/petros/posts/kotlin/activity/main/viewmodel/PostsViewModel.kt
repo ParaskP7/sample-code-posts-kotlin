@@ -1,26 +1,24 @@
 package io.petros.posts.kotlin.activity.main.viewmodel
 
-import android.databinding.BaseObservable
-import android.databinding.ObservableArrayList
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinAware
+import android.arch.lifecycle.MutableLiveData
 import com.github.salomonbrys.kodein.instance
-import io.petros.posts.kotlin.activity.viewmodel.ViewModel
+import io.petros.posts.kotlin.activity.viewmodel.KodeinViewModel
 import io.petros.posts.kotlin.model.Post
 import io.petros.posts.kotlin.model.User
 import io.petros.posts.kotlin.service.retrofit.RetrofitService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
 import timber.log.Timber
 
-class PostsViewModel(override val kodein: Kodein) : BaseObservable(), ViewModel, KodeinAware {
+class PostsViewModel : KodeinViewModel() {
 
-    val posts = ObservableArrayList<Post>()
+    var posts = MutableLiveData<List<Post>>()
 
-    private val rxSchedulers: RxSchedulers = instance()
-    private val retrofitService: RetrofitService = instance()
+    private val rxSchedulers: RxSchedulers by injector.instance()
+    private val retrofitService: RetrofitService by injector.instance()
 
     fun loadPosts() {
-        Timber.i("Loading users...")
+        Timber.i("Loading posts...")
+        Timber.d("Retrieving users...")
         retrofitService.users()
                 .observeOn(rxSchedulers.androidMainThreadScheduler)
                 .subscribeOn(rxSchedulers.ioScheduler)
@@ -29,7 +27,7 @@ class PostsViewModel(override val kodein: Kodein) : BaseObservable(), ViewModel,
 
     private fun handleUsersResponse(retrievedUsers: List<User>) {
         Timber.v("Users was successfully retrieved... [$retrievedUsers]")
-        Timber.i("Loading posts...")
+        Timber.d("Retrieving posts...")
         retrofitService.posts()
                 .observeOn(rxSchedulers.androidMainThreadScheduler)
                 .subscribeOn(rxSchedulers.ioScheduler)
@@ -42,8 +40,7 @@ class PostsViewModel(override val kodein: Kodein) : BaseObservable(), ViewModel,
 
     private fun handlePostsResponse(retrievedPosts: List<Post>) {
         Timber.v("Posts was successfully retrieved... [$retrievedPosts]")
-        posts.clear()
-        posts.addAll(retrievedPosts)
+        posts.value = retrievedPosts
     }
 
     private fun handlePostsError(throwable: Throwable) {

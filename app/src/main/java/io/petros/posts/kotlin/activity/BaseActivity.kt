@@ -78,6 +78,7 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
 
     private fun setToolbar() {
         setSupportActionBar(toolbar)
+        Timber.d("%s toolbar set.", javaClass.simpleName)
     }
 
     // FRAGMENT // *************************************************************************************************************************
@@ -86,12 +87,14 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(fragmentId, Fragment())
         fragmentTransaction.commit()
+        Timber.d("%s fragment added.", javaClass.simpleName)
     }
 
     protected fun removeFragment(fragmentId: Int) {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.remove(fragmentManager.findFragmentById(fragmentId))
         fragmentTransaction.commit()
+        Timber.d("%s fragment removed.", javaClass.simpleName)
     }
 
 }

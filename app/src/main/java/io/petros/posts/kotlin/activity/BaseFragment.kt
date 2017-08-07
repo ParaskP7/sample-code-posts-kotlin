@@ -1,19 +1,24 @@
 package io.petros.posts.kotlin.activity
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.LifecycleFragment
 import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.ButterKnife
-import com.github.salomonbrys.kodein.android.KodeinFragment
+import com.github.salomonbrys.kodein.KodeinInjector
+import com.github.salomonbrys.kodein.android.appKodein
+import io.petros.posts.kotlin.activity.viewmodel.KodeinViewModel
 import timber.log.Timber
 
-abstract class BaseFragment<BINDING : ViewDataBinding> : KodeinFragment() {
+abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : KodeinViewModel> : LifecycleFragment() {
+
+    protected val injector = KodeinInjector()
 
     protected lateinit var binding: BINDING
+    protected lateinit var viewModel: VIEW_MODEL
 
     // LIFECYCLE // ************************************************************************************************************************
 
@@ -25,36 +30,41 @@ abstract class BaseFragment<BINDING : ViewDataBinding> : KodeinFragment() {
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setKodein()
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
 
+    private fun setKodein() {
+        injector.inject(appKodein())
+        Timber.d("%s kodein set.", javaClass.simpleName)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(getLayoutId(), container, false)
-        setBinding()
-        setButterKnife(view)
+        setBinding(inflater, container)
+        setViewModel()
         Timber.d("%s create view. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
-        return view
+        return binding.root
     }
 
-    protected abstract fun getLayoutId(): Int
-
-    private fun setBinding() {
-        binding = constructBinding()
+    private fun setBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        binding = constructBinding(inflater, container)
+        Timber.d("%s binding constructed.", javaClass.simpleName)
     }
 
-    protected abstract fun constructBinding(): BINDING
+    protected abstract fun constructBinding(inflater: LayoutInflater, container: ViewGroup?): BINDING
 
-    private fun setButterKnife(view: View) {
-        ButterKnife.bind(this, view)
+    private fun setViewModel() {
+        viewModel = constructViewModel()
+        viewModel.whenReady(appKodein())
+        Timber.d("%s view model constructed.", javaClass.simpleName)
     }
+
+    protected abstract fun constructViewModel(): VIEW_MODEL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // After that the activity is created.
         super.onViewCreated(view, savedInstanceState)
-        bindViewModel()
         Timber.d("%s view created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
-
-    protected abstract fun bindViewModel()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

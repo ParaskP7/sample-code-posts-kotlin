@@ -14,9 +14,13 @@ fun Context.toast(message: CharSequence) = Toast.makeText(this, message, Toast.L
 
 fun Fragment.toast(message: CharSequence) = activity.toast(message)
 
-fun ViewGroup.inflate(layoutRes: Int): View = LayoutInflater.from(context)
-        .inflate(layoutRes, this, false)
+fun ViewGroup.inflate(resource: Int): View = LayoutInflater.from(context)
+        .inflate(resource, this, false)
 
 fun View.snack() = Snackbar.make(this, R.string.snackbar_text, Snackbar.LENGTH_LONG)
+        .setAction(R.string.snackbar_action_text, {})
+        .show()
+
+fun View.snack(resId: Int) = Snackbar.make(this, resId, Snackbar.LENGTH_LONG)
         .setAction(R.string.snackbar_action_text, {})
         .show()

@@ -7,4 +7,8 @@
     <string name="snackbar_text">Lambda snackbar action a la Kotlin…</string>
     <string name="snackbar_action_text">OK</string>
 
+    <!-- ACTIVITY // **************************************************************************************************** -->
+
+    <string name="snackbar_text__pull_down_to_refresh">Pull down to refresh your posts!</string>
+
 </resources>

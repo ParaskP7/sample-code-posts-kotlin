@@ -4,7 +4,6 @@ import android.app.Application
 import android.support.v7.app.AppCompatDelegate
 import com.github.salomonbrys.kodein.*
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
-import io.petros.posts.kotlin.activity.main.viewmodel.PostsViewModel
 import io.petros.posts.kotlin.app.constructPostsAdapter
 import io.petros.posts.kotlin.app.constructRetrofitService
 import io.petros.posts.kotlin.app.constructRxSchedulers
@@ -25,7 +24,6 @@ class App : Application(), KodeinAware {
     override val kodein by Kodein.lazy {
         bind<RxSchedulers>() with instance(constructRxSchedulers())
         bind<RetrofitService>() with instance(constructRetrofitService(applicationContext))
-        bind<PostsViewModel>() with singleton { PostsViewModel(kodein) }
         bind<PostsAdapter>() with instance(constructPostsAdapter(applicationContext))
     }
 

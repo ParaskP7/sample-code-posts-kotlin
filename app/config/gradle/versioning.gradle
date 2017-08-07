@@ -30,6 +30,7 @@ ext.versions = [
         // Android
         supportLibrary  : '26.0.0',
         constraintLayout: '1.0.2',
+        arch            : '1.0.0-alpha1',
 
         // Important
         kodein          : '4.1.0',
@@ -74,6 +75,11 @@ ext.deps = [
 
         'databinding': [
                 'compiler': "com.android.databinding:compiler:$versions.androidPlugin", // The compiler version must be the same as gradle.
+        ],
+
+        'arch'       : [
+                'lifecycleExtensions': "android.arch.lifecycle:extensions:$versions.arch",
+                'lifecycleCompiler'  : "android.arch.lifecycle:compiler:$versions.arch",
         ],
 
         'kodein'     : [

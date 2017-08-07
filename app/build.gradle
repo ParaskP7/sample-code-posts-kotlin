@@ -46,6 +46,11 @@ android {
         enabled = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -56,6 +61,8 @@ dependencies {
     implementation deps.support.design
     implementation deps.support.cardView
     kapt deps.databinding.compiler
+    implementation deps.arch.lifecycleExtensions
+    kapt deps.arch.lifecycleCompiler
     implementation deps.kodein.runtime
     implementation deps.kodein.android
     implementation deps.butterKnife.runtime

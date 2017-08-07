@@ -29,7 +29,7 @@ class MainActivity : BaseActivity() {
 
     @OnClick(R.id.fab)
     internal fun onFabClick() {
-        fab.snack()
+        fab.snack(R.string.snackbar_text__pull_down_to_refresh)
     }
 
 }
