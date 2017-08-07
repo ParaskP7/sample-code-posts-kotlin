@@ -34,7 +34,7 @@ ext.versions = [
 
         // Important
         kodein          : '4.1.0',
-        butterKnife     : '8.7.0',
+        butterKnife     : '8.8.0',
 
         // ReactiveX
         rxAndroid       : '2.0.1',
