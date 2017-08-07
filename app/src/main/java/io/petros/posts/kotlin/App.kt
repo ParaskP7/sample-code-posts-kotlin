@@ -7,6 +7,7 @@ import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.app.constructPostsAdapter
 import io.petros.posts.kotlin.app.constructRetrofitService
 import io.petros.posts.kotlin.app.constructRxSchedulers
+import io.petros.posts.kotlin.repository.PostsRepository
 import io.petros.posts.kotlin.service.retrofit.RetrofitService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
 import timber.log.Timber
@@ -25,6 +26,7 @@ class App : Application(), KodeinAware {
         bind<RxSchedulers>() with instance(constructRxSchedulers())
         bind<RetrofitService>() with instance(constructRetrofitService(applicationContext))
         bind<PostsAdapter>() with instance(constructPostsAdapter(applicationContext))
+        bind<PostsRepository>() with singleton { PostsRepository(kodein) }
     }
 
     // LIFECYCLE // ************************************************************************************************************************

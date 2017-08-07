@@ -1,9 +1,9 @@
 package io.petros.posts.kotlin.activity
 
 import android.annotation.SuppressLint
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import butterknife.ButterKnife
 import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -84,17 +84,22 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
     // FRAGMENT // *************************************************************************************************************************
 
     protected fun addFragment(fragmentId: Int) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(fragmentId, Fragment())
         fragmentTransaction.commit()
         Timber.d("%s fragment added.", javaClass.simpleName)
     }
 
     protected fun removeFragment(fragmentId: Int) {
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.remove(fragmentManager.findFragmentById(fragmentId))
-        fragmentTransaction.commit()
-        Timber.d("%s fragment removed.", javaClass.simpleName)
+        val fragment = supportFragmentManager.findFragmentById(fragmentId)
+        if (fragment != null) {
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.remove(fragment)
+            fragmentTransaction.commit()
+            Timber.d("%s fragment removed.", javaClass.simpleName)
+        } else {
+            Timber.d("%s cannot removed fragment. [It Doesn't Exist]", javaClass.simpleName)
+        }
     }
 
 }
