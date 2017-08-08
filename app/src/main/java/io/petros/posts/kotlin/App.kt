@@ -1,6 +1,7 @@
 package io.petros.posts.kotlin
 
 import android.app.Application
+import android.os.StrictMode
 import android.support.v7.app.AppCompatDelegate
 import com.github.salomonbrys.kodein.*
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
@@ -43,6 +44,7 @@ class App : Application(), KodeinAware {
         super.onCreate()
         initJodaTime()
         initTimber()
+        initStrictMode()
         Timber.i("%s application created!", getString(R.string.app_name))
     }
 
@@ -52,6 +54,26 @@ class App : Application(), KodeinAware {
 
     private fun initTimber() {
         Timber.plant(Timber.DebugTree())
+    }
+
+    private fun initStrictMode() {
+        setThreadPolicyToStrictMode()
+        setVmPolicyToStrictMode()
+    }
+
+    private fun setThreadPolicyToStrictMode() {
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .penaltyFlashScreen()
+                .build())
+    }
+
+    private fun setVmPolicyToStrictMode() {
+        StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build())
     }
 
 }
