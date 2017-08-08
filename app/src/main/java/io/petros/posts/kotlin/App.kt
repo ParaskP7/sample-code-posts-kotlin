@@ -6,11 +6,11 @@ import com.github.salomonbrys.kodein.*
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.app.constructPostsAdapter
 import io.petros.posts.kotlin.app.constructPostsCache
-import io.petros.posts.kotlin.app.constructRetrofitService
 import io.petros.posts.kotlin.app.constructRxSchedulers
+import io.petros.posts.kotlin.app.constructWebService
 import io.petros.posts.kotlin.datastore.cache.PostsCache
 import io.petros.posts.kotlin.repository.PostsRepository
-import io.petros.posts.kotlin.service.retrofit.RetrofitService
+import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
 import timber.log.Timber
 
@@ -27,7 +27,7 @@ class App : Application(), KodeinAware {
     override val kodein by Kodein.lazy {
         bind<PostsAdapter>() with instance(constructPostsAdapter(applicationContext))
         bind<RxSchedulers>() with instance(constructRxSchedulers())
-        bind<RetrofitService>() with instance(constructRetrofitService(applicationContext))
+        bind<WebService>() with instance(constructWebService(applicationContext))
         bind<PostsCache>() with instance(constructPostsCache())
         bind<PostsRepository>() with singleton { PostsRepository(kodein) }
     }

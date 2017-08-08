@@ -5,7 +5,7 @@ import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.datastore.cache.PostsCache
 import io.petros.posts.kotlin.extension.toast
-import io.petros.posts.kotlin.service.retrofit.RetrofitService
+import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,13 +19,13 @@ fun constructRxSchedulers(): RxSchedulers {
     return RxSchedulers(Schedulers.io(), Schedulers.computation(), Schedulers.trampoline(), AndroidSchedulers.mainThread())
 }
 
-fun constructRetrofitService(context: Context): RetrofitService {
+fun constructWebService(context: Context): WebService {
     val retrofit = Retrofit.Builder()
             .baseUrl(context.getString(R.string.posts_url))
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-    return retrofit.create(RetrofitService::class.java)
+    return retrofit.create(WebService::class.java)
 }
 
 fun constructPostsCache(): PostsCache = PostsCache()

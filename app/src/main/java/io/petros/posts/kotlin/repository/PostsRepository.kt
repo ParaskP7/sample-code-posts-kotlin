@@ -8,14 +8,14 @@ import com.github.salomonbrys.kodein.instance
 import io.petros.posts.kotlin.datastore.cache.PostsCache
 import io.petros.posts.kotlin.model.Post
 import io.petros.posts.kotlin.model.User
-import io.petros.posts.kotlin.service.retrofit.RetrofitService
+import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
 import timber.log.Timber
 
 class PostsRepository(override val kodein: Kodein) : KodeinAware {
 
     private val rxSchedulers: RxSchedulers = instance()
-    private val retrofitService: RetrofitService = instance()
+    private val webService: WebService = instance()
 
     private val postsCache: PostsCache = instance()
 
@@ -33,7 +33,7 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
             data.value = cachedData
         } else {
             Timber.d("Retrieving users...")
-            retrofitService.users()
+            webService.users()
                     .observeOn(rxSchedulers.androidMainThreadScheduler)
                     .subscribeOn(rxSchedulers.ioScheduler)
                     .subscribe(this::handleUsersResponse, this::handleUsersError)
@@ -43,7 +43,7 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
     private fun handleUsersResponse(retrievedUsers: List<User>) {
         Timber.v("Users was successfully retrieved... [$retrievedUsers]")
         Timber.d("Retrieving posts...")
-        retrofitService.posts()
+        webService.posts()
                 .observeOn(rxSchedulers.androidMainThreadScheduler)
                 .subscribeOn(rxSchedulers.ioScheduler)
                 .subscribe(this::handlePostsResponse, this::handlePostsError)
