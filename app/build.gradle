@@ -61,8 +61,11 @@ dependencies {
     implementation deps.support.design
     implementation deps.support.cardView
     kapt deps.databinding.compiler
+    implementation deps.arch.lifecycleRuntime
     implementation deps.arch.lifecycleExtensions
     kapt deps.arch.lifecycleCompiler
+    implementation deps.arch.roomRuntime
+    kapt deps.arch.roomCompiler
     implementation deps.kodein.runtime
     implementation deps.kodein.android
     implementation deps.butterKnife.runtime

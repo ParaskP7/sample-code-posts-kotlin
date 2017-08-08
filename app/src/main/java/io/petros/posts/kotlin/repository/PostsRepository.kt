@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.KodeinAware
 import com.github.salomonbrys.kodein.instance
+import io.petros.posts.kotlin.datastore.Datastore
 import io.petros.posts.kotlin.datastore.cache.PostsCache
 import io.petros.posts.kotlin.model.Post
 import io.petros.posts.kotlin.model.User
@@ -18,6 +19,7 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
     private val webService: WebService = instance()
 
     private val postsCache: PostsCache = instance()
+    private val datastore: Datastore = instance()
 
     private val data = MutableLiveData<List<Post>>()
 
@@ -42,11 +44,15 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
 
     private fun handleUsersResponse(retrievedUsers: List<User>) {
         Timber.v("Users was successfully retrieved... [$retrievedUsers]")
-        Timber.d("Retrieving posts...")
-        webService.posts()
-                .observeOn(rxSchedulers.androidMainThreadScheduler)
-                .subscribeOn(rxSchedulers.ioScheduler)
-                .subscribe(this::handlePostsResponse, this::handlePostsError)
+        if (datastore.saveUsers(retrievedUsers)) {
+            Timber.d("Retrieving posts...")
+            webService.posts()
+                    .observeOn(rxSchedulers.androidMainThreadScheduler)
+                    .subscribeOn(rxSchedulers.ioScheduler)
+                    .subscribe(this::handlePostsResponse, this::handlePostsError)
+        } else {
+            Timber.w("Users are not available...")
+        }
     }
 
     private fun handleUsersError(throwable: Throwable) {

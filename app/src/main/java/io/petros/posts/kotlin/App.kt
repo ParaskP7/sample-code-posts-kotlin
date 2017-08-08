@@ -4,11 +4,11 @@ import android.app.Application
 import android.support.v7.app.AppCompatDelegate
 import com.github.salomonbrys.kodein.*
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
-import io.petros.posts.kotlin.app.constructPostsAdapter
-import io.petros.posts.kotlin.app.constructPostsCache
-import io.petros.posts.kotlin.app.constructRxSchedulers
-import io.petros.posts.kotlin.app.constructWebService
+import io.petros.posts.kotlin.app.*
+import io.petros.posts.kotlin.datastore.Datastore
 import io.petros.posts.kotlin.datastore.cache.PostsCache
+import io.petros.posts.kotlin.datastore.db.PostsDatabase
+import io.petros.posts.kotlin.datastore.db.UserDao
 import io.petros.posts.kotlin.repository.PostsRepository
 import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
@@ -25,10 +25,14 @@ class App : Application(), KodeinAware {
     // DEPENDENCY INJECTION // *************************************************************************************************************
 
     override val kodein by Kodein.lazy {
-        bind<PostsAdapter>() with instance(constructPostsAdapter(applicationContext))
-        bind<RxSchedulers>() with instance(constructRxSchedulers())
-        bind<WebService>() with instance(constructWebService(applicationContext))
-        bind<PostsCache>() with instance(constructPostsCache())
+        bind<PostsAdapter>() with singleton { constructPostsAdapter(applicationContext) }
+        bind<RxSchedulers>() with singleton { constructRxSchedulers() }
+        bind<WebService>() with singleton { constructWebService(applicationContext) }
+        bind<PostsCache>() with singleton { constructPostsCache() }
+        val postsDatabase = constructPostsDatabase(applicationContext)
+        bind<PostsDatabase>() with singleton { postsDatabase }
+        bind<UserDao>() with singleton { constructUserDao(postsDatabase) }
+        bind<Datastore>() with singleton { Datastore(kodein) }
         bind<PostsRepository>() with singleton { PostsRepository(kodein) }
     }
 

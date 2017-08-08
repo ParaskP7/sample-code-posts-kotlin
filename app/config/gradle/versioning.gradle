@@ -78,8 +78,11 @@ ext.deps = [
         ],
 
         'arch'       : [
+                'lifecycleRuntime': "android.arch.lifecycle:runtime:$versions.arch",
                 'lifecycleExtensions': "android.arch.lifecycle:extensions:$versions.arch",
                 'lifecycleCompiler'  : "android.arch.lifecycle:compiler:$versions.arch",
+                'roomRuntime': "android.arch.persistence.room:runtime:$versions.arch",
+                'roomCompiler'  : "android.arch.persistence.room:compiler:$versions.arch",
         ],
 
         'kodein'     : [

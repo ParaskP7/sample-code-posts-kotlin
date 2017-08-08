@@ -1,9 +1,12 @@
 package io.petros.posts.kotlin.app
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.datastore.cache.PostsCache
+import io.petros.posts.kotlin.datastore.db.PostsDatabase
+import io.petros.posts.kotlin.datastore.db.UserDao
 import io.petros.posts.kotlin.extension.toast
 import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
@@ -29,3 +32,8 @@ fun constructWebService(context: Context): WebService {
 }
 
 fun constructPostsCache(): PostsCache = PostsCache()
+
+fun constructPostsDatabase(context: Context): PostsDatabase = Room.databaseBuilder(context, PostsDatabase::class.java, "posts.db")
+        .build()
+
+fun constructUserDao(postsDatabase: PostsDatabase): UserDao = postsDatabase.userDao()
