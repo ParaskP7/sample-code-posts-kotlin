@@ -46,6 +46,9 @@ ext.versions = [
         // Logging
         timber          : '4.5.1',
 
+        // Other
+        jodaTime        : '2.9.9',
+
         // TEST IMPLEMENTATION // **********************************************************************************************************
 
         // Test
@@ -108,6 +111,10 @@ ext.deps = [
 
         'logging'    : [
                 'timber': "com.jakewharton.timber:timber:$versions.timber",
+        ],
+
+        'other'      : [
+                'jodaTime': "net.danlew:android.joda:$versions.jodaTime",
         ],
 
         // TEST IMPLEMENTATION // **********************************************************************************************************

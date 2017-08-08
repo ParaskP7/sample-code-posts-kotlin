@@ -12,6 +12,7 @@ import io.petros.posts.kotlin.datastore.db.UserDao
 import io.petros.posts.kotlin.repository.PostsRepository
 import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
+import net.danlew.android.joda.JodaTimeAndroid
 import timber.log.Timber
 
 class App : Application(), KodeinAware {
@@ -40,8 +41,13 @@ class App : Application(), KodeinAware {
 
     override fun onCreate() {
         super.onCreate()
+        initJodaTime()
         initTimber()
         Timber.i("%s application created!", getString(R.string.app_name))
+    }
+
+    private fun initJodaTime() {
+        JodaTimeAndroid.init(this)
     }
 
     private fun initTimber() {

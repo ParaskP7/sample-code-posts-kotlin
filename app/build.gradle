@@ -76,6 +76,7 @@ dependencies {
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.rx
     implementation deps.logging.timber
+    implementation deps.other.jodaTime
 
     testImplementation deps.test.junit
 
