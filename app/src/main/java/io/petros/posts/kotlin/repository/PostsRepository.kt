@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.KodeinAware
 import com.github.salomonbrys.kodein.instance
+import io.petros.posts.kotlin.datastore.cache.PostsCache
 import io.petros.posts.kotlin.model.Post
 import io.petros.posts.kotlin.model.User
 import io.petros.posts.kotlin.service.retrofit.RetrofitService
@@ -16,6 +17,8 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
     private val rxSchedulers: RxSchedulers = instance()
     private val retrofitService: RetrofitService = instance()
 
+    private val postsCache: PostsCache = instance()
+
     private val data = MutableLiveData<List<Post>>()
 
     fun init(): LiveData<List<Post>> {
@@ -24,11 +27,17 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
     }
 
     fun loadPosts() {
-        Timber.d("Retrieving users...")
-        retrofitService.users()
-                .observeOn(rxSchedulers.androidMainThreadScheduler)
-                .subscribeOn(rxSchedulers.ioScheduler)
-                .subscribe(this::handleUsersResponse, this::handleUsersError)
+        val cachedData = postsCache.get()
+        if (cachedData != null) {
+            Timber.d("Retrieving posts from cache...")
+            data.value = cachedData
+        } else {
+            Timber.d("Retrieving users...")
+            retrofitService.users()
+                    .observeOn(rxSchedulers.androidMainThreadScheduler)
+                    .subscribeOn(rxSchedulers.ioScheduler)
+                    .subscribe(this::handleUsersResponse, this::handleUsersError)
+        }
     }
 
     private fun handleUsersResponse(retrievedUsers: List<User>) {
@@ -47,6 +56,7 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
     private fun handlePostsResponse(retrievedPosts: List<Post>) {
         Timber.v("Posts was successfully retrieved... [$retrievedPosts]")
         data.value = retrievedPosts
+        postsCache.set(retrievedPosts)
     }
 
     private fun handlePostsError(throwable: Throwable) {
