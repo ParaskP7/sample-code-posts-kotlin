@@ -26,6 +26,7 @@
 
         <activity
             android:name=".activity.main.MainActivity"
+            android:launchMode="singleTop"
             android:label="@string/activity_label"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

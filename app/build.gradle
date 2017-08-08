@@ -36,9 +36,8 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -77,6 +76,10 @@ dependencies {
     implementation deps.retrofit.rx
     implementation deps.logging.timber
     implementation deps.other.jodaTime
+
+    debugImplementation deps.leakCanary.op
+    releaseImplementation deps.leakCanary.noOp
+    testImplementation deps.leakCanary.noOp
 
     testImplementation deps.test.junit
 

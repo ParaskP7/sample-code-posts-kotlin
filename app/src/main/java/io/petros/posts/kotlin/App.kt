@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.StrictMode
 import android.support.v7.app.AppCompatDelegate
 import com.github.salomonbrys.kodein.*
+import com.squareup.leakcanary.LeakCanary
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.app.*
 import io.petros.posts.kotlin.datastore.Datastore
@@ -42,10 +43,15 @@ class App : Application(), KodeinAware {
 
     override fun onCreate() {
         super.onCreate()
+        if (!LeakCanary.isInAnalyzerProcess(this)) initLeakCanary() else return
+        initStrictMode()
         initJodaTime()
         initTimber()
-        initStrictMode()
         Timber.i("%s application created!", getString(R.string.app_name))
+    }
+
+    private fun initLeakCanary() {
+        LeakCanary.install(this)
     }
 
     private fun initJodaTime() {
