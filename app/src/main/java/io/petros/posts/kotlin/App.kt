@@ -8,7 +8,8 @@ import com.squareup.leakcanary.LeakCanary
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.app.*
 import io.petros.posts.kotlin.datastore.Datastore
-import io.petros.posts.kotlin.datastore.cache.PostsCache
+import io.petros.posts.kotlin.datastore.db.CommentDao
+import io.petros.posts.kotlin.datastore.db.PostDao
 import io.petros.posts.kotlin.datastore.db.PostsDatabase
 import io.petros.posts.kotlin.datastore.db.UserDao
 import io.petros.posts.kotlin.repository.PostsRepository
@@ -31,10 +32,11 @@ class App : Application(), KodeinAware {
         bind<PostsAdapter>() with singleton { constructPostsAdapter(applicationContext) }
         bind<RxSchedulers>() with singleton { constructRxSchedulers() }
         bind<WebService>() with singleton { constructWebService(applicationContext) }
-        bind<PostsCache>() with singleton { constructPostsCache() }
         val postsDatabase = constructPostsDatabase(applicationContext)
         bind<PostsDatabase>() with singleton { postsDatabase }
         bind<UserDao>() with singleton { constructUserDao(postsDatabase) }
+        bind<PostDao>() with singleton { constructPostDao(postsDatabase) }
+        bind<CommentDao>() with singleton { constructCommentDao(postsDatabase) }
         bind<Datastore>() with singleton { Datastore(kodein) }
         bind<PostsRepository>() with singleton { PostsRepository(kodein) }
     }

@@ -4,7 +4,8 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
-import io.petros.posts.kotlin.datastore.cache.PostsCache
+import io.petros.posts.kotlin.datastore.db.CommentDao
+import io.petros.posts.kotlin.datastore.db.PostDao
 import io.petros.posts.kotlin.datastore.db.PostsDatabase
 import io.petros.posts.kotlin.datastore.db.UserDao
 import io.petros.posts.kotlin.extension.toast
@@ -31,9 +32,11 @@ fun constructWebService(context: Context): WebService {
     return retrofit.create(WebService::class.java)
 }
 
-fun constructPostsCache(): PostsCache = PostsCache()
-
 fun constructPostsDatabase(context: Context): PostsDatabase = Room.databaseBuilder(context, PostsDatabase::class.java, "posts.db")
         .build()
 
 fun constructUserDao(postsDatabase: PostsDatabase): UserDao = postsDatabase.userDao()
+
+fun constructPostDao(postsDatabase: PostsDatabase): PostDao = postsDatabase.postDao()
+
+fun constructCommentDao(postsDatabase: PostsDatabase): CommentDao = postsDatabase.commentDao()

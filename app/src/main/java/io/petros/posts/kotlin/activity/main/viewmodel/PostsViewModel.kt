@@ -12,9 +12,9 @@ class PostsViewModel : KodeinViewModel() {
     private var _posts: LiveData<List<Post>>? = null
     val posts: LiveData<List<Post>> get() {
         if (_posts == null) {
-            _posts = postsRepository.init()
+            _posts = postsRepository.getPosts()
         }
-        return _posts ?: throw AssertionError("The live data for list of posts has not been initialised")
+        return _posts ?: throw AssertionError("The live data for list of posts is not initialised")
     }
 
     private val postsRepository: PostsRepository by injector.instance()
