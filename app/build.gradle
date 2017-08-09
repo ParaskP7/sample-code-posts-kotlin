@@ -72,6 +72,7 @@ dependencies {
     kapt deps.butterKnife.compiler
     implementation deps.rx.java
     implementation deps.rx.android
+    debugImplementation deps.rx.lint
     implementation deps.retrofit.runtime
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.rx
