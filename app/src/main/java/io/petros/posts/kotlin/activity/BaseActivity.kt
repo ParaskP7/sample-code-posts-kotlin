@@ -1,31 +1,69 @@
 package io.petros.posts.kotlin.activity
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Intent
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
-import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
+import com.github.salomonbrys.kodein.KodeinInjector
+import com.github.salomonbrys.kodein.android.appKodein
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
-abstract class BaseActivity : KodeinAppCompatActivity() {
+abstract class BaseActivity<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : AppCompatActivity(), LifecycleRegistryOwner {
+
+    protected val injector = KodeinInjector()
+
+    protected lateinit var binding: BINDING
+    protected lateinit var viewModel: VIEW_MODEL
+
+    // LIFECYCLE REGISTRY // ***************************************************************************************************************
+
+    private val lifecycleRegistry = LifecycleRegistry(this)
+
+    override fun getLifecycle(): LifecycleRegistry {
+        return lifecycleRegistry
+    }
 
     // LIFECYCLE // ************************************************************************************************************************
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
+        setBinding()
+        setViewModel()
+        setKodein()
         setButterKnife()
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
 
-    protected abstract fun getLayoutId(): Int
+    private fun setKodein() {
+        injector.inject(appKodein())
+        Timber.d("%s kodein set.", javaClass.simpleName)
+    }
 
     private fun setButterKnife() {
         ButterKnife.bind(this)
     }
+
+    private fun setBinding() {
+        binding = constructBinding()
+        Timber.d("%s binding constructed.", javaClass.simpleName)
+    }
+
+    protected abstract fun constructBinding(): BINDING
+
+    private fun setViewModel() {
+        viewModel = constructViewModel()
+        viewModel.whenReady(appKodein(), this)
+        Timber.d("%s view model constructed.", javaClass.simpleName)
+    }
+
+    protected abstract fun constructViewModel(): VIEW_MODEL
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)

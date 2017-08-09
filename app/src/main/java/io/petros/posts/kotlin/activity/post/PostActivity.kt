@@ -1,11 +1,22 @@
 package io.petros.posts.kotlin.activity.post
 
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.MenuItem
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseActivity
+import io.petros.posts.kotlin.activity.main.PostViewModel
+import io.petros.posts.kotlin.databinding.ActivityPostBinding
 
-class PostActivity : BaseActivity() {
+class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
+
+    // CONTRACT // *************************************************************************************************************************
+
+    override fun constructBinding(): ActivityPostBinding = DataBindingUtil.setContentView(this, R.layout.activity_post)
+
+    override fun constructViewModel(): PostViewModel = ViewModelProviders.of(this)
+            .get(PostViewModel::class.java)
 
     // LIFECYCLE // ************************************************************************************************************************
 
@@ -13,8 +24,6 @@ class PostActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setToolbarWithActionBar()
     }
-
-    override fun getLayoutId(): Int = R.layout.activity_post
 
     // MENU ITEMS // ***********************************************************************************************************************
 
