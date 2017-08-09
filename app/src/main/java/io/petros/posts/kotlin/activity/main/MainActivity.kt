@@ -6,6 +6,7 @@ import android.os.Bundle
 import butterknife.OnClick
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseActivity
+import io.petros.posts.kotlin.activity.main.viewmodel.MainViewModel
 import io.petros.posts.kotlin.databinding.ActivityMainBinding
 import io.petros.posts.kotlin.extension.snack
 

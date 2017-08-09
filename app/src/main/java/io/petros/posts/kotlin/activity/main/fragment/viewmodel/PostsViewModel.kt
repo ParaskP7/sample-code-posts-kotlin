@@ -1,4 +1,4 @@
-package io.petros.posts.kotlin.activity.main.viewmodel
+package io.petros.posts.kotlin.activity.main.fragment.viewmodel
 
 import android.arch.lifecycle.LiveData
 import com.github.salomonbrys.kodein.instance
