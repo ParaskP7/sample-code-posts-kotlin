@@ -1,4 +1,4 @@
-package io.petros.posts.kotlin.activity.main.viewmodel
+package io.petros.posts.kotlin.activity.posts.viewmodel
 
 import io.petros.posts.kotlin.activity.BaseViewModel
 

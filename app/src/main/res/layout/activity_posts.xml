@@ -7,7 +7,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.petros.posts.kotlin.activity.main.PostsActivity">
+        tools:context="io.petros.posts.kotlin.activity.posts.PostsActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -25,7 +25,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="io.petros.posts.kotlin.activity.main.fragment.PostsFragment"
+            android:name="io.petros.posts.kotlin.activity.posts.fragment.PostsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>

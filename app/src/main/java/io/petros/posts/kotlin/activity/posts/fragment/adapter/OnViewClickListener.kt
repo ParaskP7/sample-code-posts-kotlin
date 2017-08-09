@@ -1,4 +1,4 @@
-package io.petros.posts.kotlin.activity.main.fragment.adapter
+package io.petros.posts.kotlin.activity.posts.fragment.adapter
 
 import io.petros.posts.kotlin.model.Post
 

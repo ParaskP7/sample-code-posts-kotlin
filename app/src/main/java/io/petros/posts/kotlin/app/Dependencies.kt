@@ -4,7 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.github.salomonbrys.kodein.Kodein
 import io.petros.posts.kotlin.R
-import io.petros.posts.kotlin.activity.main.fragment.adapter.PostsAdapter
+import io.petros.posts.kotlin.activity.posts.fragment.adapter.PostsAdapter
 import io.petros.posts.kotlin.datastore.db.CommentDao
 import io.petros.posts.kotlin.datastore.db.PostDao
 import io.petros.posts.kotlin.datastore.db.PostsDatabase

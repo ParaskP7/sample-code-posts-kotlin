@@ -1,4 +1,4 @@
-package io.petros.posts.kotlin.activity.main.fragment
+package io.petros.posts.kotlin.activity.posts.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import com.github.salomonbrys.kodein.instance
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseFragment
-import io.petros.posts.kotlin.activity.main.fragment.adapter.OnPostItemViewClickListener
-import io.petros.posts.kotlin.activity.main.fragment.adapter.PostsAdapter
-import io.petros.posts.kotlin.activity.main.fragment.viewmodel.PostsViewModel
+import io.petros.posts.kotlin.activity.posts.fragment.adapter.OnPostItemViewClickListener
+import io.petros.posts.kotlin.activity.posts.fragment.adapter.PostsAdapter
+import io.petros.posts.kotlin.activity.posts.fragment.viewmodel.PostsViewModel
 import io.petros.posts.kotlin.databinding.FragmentPostsBinding
 import io.petros.posts.kotlin.model.Post
 

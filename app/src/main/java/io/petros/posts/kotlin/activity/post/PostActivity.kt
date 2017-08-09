@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseActivity
-import io.petros.posts.kotlin.activity.main.PostViewModel
+import io.petros.posts.kotlin.activity.posts.PostViewModel
 import io.petros.posts.kotlin.databinding.ActivityPostBinding
 
 class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {

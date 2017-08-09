@@ -5,7 +5,7 @@ import android.os.StrictMode
 import android.support.v7.app.AppCompatDelegate
 import com.github.salomonbrys.kodein.*
 import com.squareup.leakcanary.LeakCanary
-import io.petros.posts.kotlin.activity.main.fragment.adapter.PostsAdapter
+import io.petros.posts.kotlin.activity.posts.fragment.adapter.PostsAdapter
 import io.petros.posts.kotlin.app.*
 import io.petros.posts.kotlin.datastore.Datastore
 import io.petros.posts.kotlin.datastore.db.CommentDao
