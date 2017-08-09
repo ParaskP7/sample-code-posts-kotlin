@@ -1,6 +1,9 @@
 package io.petros.posts.kotlin.repository
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.OnLifecycleEvent
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.KodeinAware
 import com.github.salomonbrys.kodein.instance
@@ -9,14 +12,33 @@ import io.petros.posts.kotlin.model.Post
 import io.petros.posts.kotlin.model.User
 import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
+import io.reactivex.disposables.Disposable
 import timber.log.Timber
 
-class PostsRepository(override val kodein: Kodein) : KodeinAware {
+class PostsRepository(override val kodein: Kodein) : KodeinAware, LifecycleObserver {
 
+    private var subscription: Disposable? = null
     private val rxSchedulers: RxSchedulers = instance()
     private val webService: WebService = instance()
 
     private val datastore: Datastore = instance()
+
+    fun init(lifecycle: Lifecycle) {
+        lifecycle.addObserver(this)
+    }
+
+    // LIFECYCLE // ************************************************************************************************************************
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    fun onStop() {
+        Timber.d("%s stopped.", javaClass.simpleName)
+        if (subscription != null && subscription!!.isDisposed) {
+            Timber.d("Unsubscribe from posts.")
+            subscription!!.dispose()
+        }
+    }
+
+    // REPOSITORY // ***********************************************************************************************************************
 
     fun getPosts(): LiveData<List<Post>> {
         Timber.d("Retrieving posts from db...")
@@ -29,7 +51,7 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
 
     private fun retrieveUsersFromWeb() {
         Timber.d("Retrieving users from web...")
-        webService.users()
+        subscription = webService.users()
                 .observeOn(rxSchedulers.androidMainThreadScheduler)
                 .subscribeOn(rxSchedulers.ioScheduler)
                 .subscribe(this::handleUsersResponse, this::handleUsersError)
@@ -50,7 +72,7 @@ class PostsRepository(override val kodein: Kodein) : KodeinAware {
 
     private fun retrievePostsFromWeb() {
         Timber.d("Retrieving posts from web...")
-        webService.posts()
+        subscription = webService.posts()
                 .observeOn(rxSchedulers.androidMainThreadScheduler)
                 .subscribeOn(rxSchedulers.ioScheduler)
                 .subscribe(this::handlePostsResponse, this::handlePostsError)

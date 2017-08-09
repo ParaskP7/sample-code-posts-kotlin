@@ -10,10 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.salomonbrys.kodein.KodeinInjector
 import com.github.salomonbrys.kodein.android.appKodein
-import io.petros.posts.kotlin.activity.viewmodel.KodeinViewModel
 import timber.log.Timber
 
-abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : KodeinViewModel> : LifecycleFragment() {
+abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : LifecycleFragment() {
 
     protected val injector = KodeinInjector()
 
@@ -55,7 +54,7 @@ abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : KodeinViewMo
 
     private fun setViewModel() {
         viewModel = constructViewModel()
-        viewModel.whenReady(appKodein())
+        viewModel.whenReady(appKodein(), this)
         Timber.d("%s view model constructed.", javaClass.simpleName)
     }
 

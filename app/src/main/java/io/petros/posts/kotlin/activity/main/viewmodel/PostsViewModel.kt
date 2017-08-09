@@ -2,12 +2,12 @@ package io.petros.posts.kotlin.activity.main.viewmodel
 
 import android.arch.lifecycle.LiveData
 import com.github.salomonbrys.kodein.instance
-import io.petros.posts.kotlin.activity.viewmodel.KodeinViewModel
+import io.petros.posts.kotlin.activity.BaseViewModel
 import io.petros.posts.kotlin.model.Post
 import io.petros.posts.kotlin.repository.PostsRepository
 import timber.log.Timber
 
-class PostsViewModel : KodeinViewModel() {
+class PostsViewModel : BaseViewModel() {
 
     private var _posts: LiveData<List<Post>>? = null
     val posts: LiveData<List<Post>> get() {
@@ -17,7 +17,11 @@ class PostsViewModel : KodeinViewModel() {
         return _posts ?: throw AssertionError("The live data for list of posts is not initialised")
     }
 
-    private val postsRepository: PostsRepository by injector.instance()
+    private val _postsRepository: PostsRepository by injector.instance()
+    val postsRepository: PostsRepository get() {
+        _postsRepository.init(lifecycle)
+        return _postsRepository
+    }
 
     fun loadPosts() {
         Timber.i("Loading posts...")
