@@ -13,17 +13,17 @@ import io.petros.posts.kotlin.activity.BaseFragment
 import io.petros.posts.kotlin.activity.main.fragment.adapter.OnPostItemViewClickListener
 import io.petros.posts.kotlin.activity.main.fragment.adapter.PostsAdapter
 import io.petros.posts.kotlin.activity.main.fragment.viewmodel.PostsViewModel
-import io.petros.posts.kotlin.databinding.FragmentMainBinding
+import io.petros.posts.kotlin.databinding.FragmentPostsBinding
 import io.petros.posts.kotlin.model.Post
 
-class MainFragment : BaseFragment<FragmentMainBinding, PostsViewModel>(), SwipeRefreshLayout.OnRefreshListener {
+class PostsFragment : BaseFragment<FragmentPostsBinding, PostsViewModel>(), SwipeRefreshLayout.OnRefreshListener {
 
     private val postsAdapter: PostsAdapter by injector.instance()
 
     // CONTRACT // *************************************************************************************************************************
 
-    override fun constructBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+    override fun constructBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentPostsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_posts, container, false)
 
     override fun constructViewModel(): PostsViewModel = ViewModelProviders.of(this)
             .get(PostsViewModel::class.java)

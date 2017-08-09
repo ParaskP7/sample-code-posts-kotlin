@@ -7,14 +7,14 @@ import butterknife.OnClick
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseActivity
 import io.petros.posts.kotlin.activity.main.viewmodel.MainViewModel
-import io.petros.posts.kotlin.databinding.ActivityMainBinding
+import io.petros.posts.kotlin.databinding.ActivityPostsBinding
 import io.petros.posts.kotlin.extension.snack
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+class PostsActivity : BaseActivity<ActivityPostsBinding, MainViewModel>() {
 
     // CONTRACT // *************************************************************************************************************************
 
-    override fun constructBinding(): ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    override fun constructBinding(): ActivityPostsBinding = DataBindingUtil.setContentView(this, R.layout.activity_posts)
 
     override fun constructViewModel(): MainViewModel = ViewModelProviders.of(this)
             .get(MainViewModel::class.java)
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setToolbar()
+        setToolbar(binding.toolbar)
         addFragment(R.id.fragment)
     }
 

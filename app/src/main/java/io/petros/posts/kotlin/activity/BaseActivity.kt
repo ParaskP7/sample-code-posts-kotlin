@@ -8,10 +8,10 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import butterknife.ButterKnife
 import com.github.salomonbrys.kodein.KodeinInjector
 import com.github.salomonbrys.kodein.android.appKodein
-import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 abstract class BaseActivity<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : AppCompatActivity(), LifecycleRegistryOwner {
@@ -113,12 +113,12 @@ abstract class BaseActivity<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewMode
 
     // TOOLBAR // **************************************************************************************************************************
 
-    protected fun setToolbar() {
+    protected fun setToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
         Timber.d("%s toolbar set.", javaClass.simpleName)
     }
 
-    protected fun setToolbarWithActionBar() {
+    protected fun setToolbarWithActionBar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         if (actionBar != null) {

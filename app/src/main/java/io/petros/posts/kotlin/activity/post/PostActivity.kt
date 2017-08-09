@@ -22,7 +22,7 @@ class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setToolbarWithActionBar()
+        setToolbarWithActionBar(binding.toolbar)
     }
 
     // MENU ITEMS // ***********************************************************************************************************************

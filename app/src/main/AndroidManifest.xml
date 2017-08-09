@@ -25,8 +25,8 @@
         <!--ACTIVITIES // ************************************************************************************************************** -->
 
         <activity
-            android:name=".activity.main.MainActivity"
-            android:label="@string/main_activity__label"
+            android:name=".activity.main.PostsActivity"
+            android:label="@string/posts_activity__label"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

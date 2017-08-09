@@ -7,7 +7,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="io.petros.posts.kotlin.activity.main.fragment.MainFragment">
+        tools:context="io.petros.posts.kotlin.activity.main.fragment.PostsFragment">
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
