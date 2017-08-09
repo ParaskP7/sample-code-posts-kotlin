@@ -1,19 +1,19 @@
 package io.petros.posts.kotlin.datastore.db
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
-import io.petros.posts.kotlin.model.Post
+import io.petros.posts.kotlin.model.User
+import io.reactivex.Single
 
 @Dao
-interface PostDao {
+interface UserDao {
 
     @Insert(onConflict = REPLACE)
-    fun save(posts: List<Post>)
+    fun save(users: List<User>)
 
-    @Query("SELECT * FROM post")
-    fun getAll(): LiveData<List<Post>>
+    @Query("SELECT * FROM user WHERE id = :id")
+    fun get(id: String): Single<User>
 
 }

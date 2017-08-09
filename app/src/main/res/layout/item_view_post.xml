@@ -11,25 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/postIdTextView"
-            style="@style/TextView.ItemView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/postTitleTextView"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/postCircleImageView"
+            style="@style/CircleImageView.ItemView"
+            android:layout_width="@dimen/item_view__circle_image_view__layout_dimen"
+            android:layout_height="@dimen/item_view__circle_image_view__layout_dimen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/postTitleTextView"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="1"/>
+            tools:src="@mipmap/ic_launcher"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/postTitleTextView"
             style="@style/TextView.ItemView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/postCircleImageView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="sunt aut facere repellat provident occaecati excepturi optio reprehenderit"/>
 

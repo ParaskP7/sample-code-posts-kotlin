@@ -65,6 +65,7 @@ dependencies {
     kapt deps.arch.lifecycleCompiler
     implementation deps.arch.roomRuntime
     kapt deps.arch.roomCompiler
+    implementation deps.arch.roomRx
     implementation deps.kodein.runtime
     implementation deps.kodein.android
     implementation deps.butterKnife.runtime
@@ -75,6 +76,8 @@ dependencies {
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.rx
     implementation deps.logging.timber
+    implementation deps.image.glide
+    implementation deps.image.circleView
     implementation deps.other.jodaTime
 
     debugImplementation deps.leakCanary.op

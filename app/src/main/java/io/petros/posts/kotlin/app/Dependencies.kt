@@ -2,6 +2,7 @@ package io.petros.posts.kotlin.app
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.github.salomonbrys.kodein.Kodein
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.datastore.db.CommentDao
@@ -17,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-fun constructPostsAdapter(context: Context): PostsAdapter = PostsAdapter { context.toast("${it.id} ${it.title}") }
+fun constructPostsAdapter(kodein: Kodein, context: Context): PostsAdapter = PostsAdapter(kodein) { context.toast("${it.id} ${it.title}") }
 
 fun constructRxSchedulers(): RxSchedulers {
     return RxSchedulers(Schedulers.io(), Schedulers.computation(), Schedulers.trampoline(), AndroidSchedulers.mainThread())

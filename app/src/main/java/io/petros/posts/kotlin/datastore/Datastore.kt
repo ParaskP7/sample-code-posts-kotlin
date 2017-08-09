@@ -19,6 +19,11 @@ class Datastore(override val kodein: Kodein) : KodeinAware {
     private val userDao: UserDao = instance()
     private val postDao: PostDao = instance()
 
+    fun getUser(id: String): Single<User> {
+        Timber.v("Getting user... [Id: $id]")
+        return userDao.get(id)
+    }
+
     fun saveUsers(users: List<User>): Boolean {
         if (!users.isEmpty()) {
             Single.fromCallable {

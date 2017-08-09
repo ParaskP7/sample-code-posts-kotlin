@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- ITEM VIEW // *************************************************************************************************** -->
+
+    <style name="CircleImageView.ItemView" parent="">
+        <item name="android:layout_margin">@dimen/item_view__circle_image_view__layout_margin</item>
+        <item name="civ_border_color">@color/colorPrimaryDark</item>
+        <item name="civ_border_width">@dimen/item_view__circle_image_view__civ_border_width</item>
+    </style>
+
+</resources>

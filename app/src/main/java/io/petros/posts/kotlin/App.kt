@@ -29,7 +29,7 @@ class App : Application(), KodeinAware {
     // DEPENDENCY INJECTION // *************************************************************************************************************
 
     override val kodein by Kodein.lazy {
-        bind<PostsAdapter>() with singleton { constructPostsAdapter(applicationContext) }
+        bind<PostsAdapter>() with singleton { constructPostsAdapter(kodein, applicationContext) }
         bind<RxSchedulers>() with singleton { constructRxSchedulers() }
         bind<WebService>() with singleton { constructWebService(applicationContext) }
         val postsDatabase = constructPostsDatabase(applicationContext)

@@ -1,20 +1,20 @@
 package io.petros.posts.kotlin.activity.main.viewmodel
 
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
+import com.github.salomonbrys.kodein.Kodein
+import com.github.salomonbrys.kodein.KodeinAware
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.extension.inflate
 import io.petros.posts.kotlin.model.Post
-import kotlinx.android.synthetic.main.item_view_post.view.*
 
-class PostsAdapter(val listener: (Post) -> Unit) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
+class PostsAdapter(override val kodein: Kodein, val listener: (Post) -> Unit) : KodeinAware, RecyclerView.Adapter<PostViewHolder>() {
 
     val allPosts = ArrayList<Post>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(parent.inflate(R.layout.item_view_post))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder = PostViewHolder(kodein, parent.inflate(R.layout.item_view_post))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(allPosts[position], listener)
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) = holder.bind(allPosts[position], listener)
 
     override fun getItemCount(): Int = allPosts.size
 
@@ -22,14 +22,6 @@ class PostsAdapter(val listener: (Post) -> Unit) : RecyclerView.Adapter<PostsAda
         allPosts.clear()
         allPosts.addAll(posts)
         notifyDataSetChanged()
-    }
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(post: Post, listener: (Post) -> Unit) = with(itemView) {
-            postIdTextView.text = post.id
-            postTitleTextView.text = post.title
-            setOnClickListener { listener(post) }
-        }
     }
 
 }

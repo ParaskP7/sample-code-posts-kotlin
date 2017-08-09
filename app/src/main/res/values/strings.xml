@@ -6,5 +6,6 @@
 
     <string name="app_name">Posts (Kotlin)</string>
     <string name="posts_url">http://jsonplaceholder.typicode.com</string>
+    <string name="avatar_url">https://api.adorable.io/avatars/150/%s.png</string>
 
 </resources>

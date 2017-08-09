@@ -46,6 +46,10 @@ ext.versions = [
         // Logging
         timber          : '4.5.1',
 
+        // Image
+        glide           : '4.0.0',
+        circleView      : '2.1.0',
+
         // Other
         jodaTime        : '2.9.9',
 
@@ -91,6 +95,7 @@ ext.deps = [
                 'lifecycleCompiler'  : "android.arch.lifecycle:compiler:$versions.arch",
                 'roomRuntime'        : "android.arch.persistence.room:runtime:$versions.arch",
                 'roomCompiler'       : "android.arch.persistence.room:compiler:$versions.arch",
+                'roomRx'       : "android.arch.persistence.room:rxjava2:$versions.arch",
         ],
 
         'kodein'     : [
@@ -116,6 +121,11 @@ ext.deps = [
 
         'logging'    : [
                 'timber': "com.jakewharton.timber:timber:$versions.timber",
+        ],
+
+        'image'      : [
+                'glide'     : "com.github.bumptech.glide:glide:$versions.glide",
+                'circleView': "de.hdodenhof:circleimageview:$versions.circleView",
         ],
 
         'other'      : [
