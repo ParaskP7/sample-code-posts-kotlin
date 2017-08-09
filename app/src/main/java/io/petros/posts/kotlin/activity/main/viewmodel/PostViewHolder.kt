@@ -17,10 +17,10 @@ class PostViewHolder(override val kodein: Kodein, itemView: View) : KodeinAware,
     private val rxSchedulers: RxSchedulers = instance()
     private val datastore: Datastore = instance()
 
-    fun bind(post: Post, listener: (Post) -> Unit) = with(itemView) {
+    fun bind(post: Post, listener: OnViewClickListener) = with(itemView) {
         setCircleImageView(post)
         setTitleTextView(post)
-        setOnClickListener { listener(post) }
+        setOnClickListener { listener.onViewClick(post) }
     }
 
     private fun setCircleImageView(post: Post) = with(itemView) {

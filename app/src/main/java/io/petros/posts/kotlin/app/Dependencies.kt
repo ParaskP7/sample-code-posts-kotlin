@@ -9,7 +9,6 @@ import io.petros.posts.kotlin.datastore.db.CommentDao
 import io.petros.posts.kotlin.datastore.db.PostDao
 import io.petros.posts.kotlin.datastore.db.PostsDatabase
 import io.petros.posts.kotlin.datastore.db.UserDao
-import io.petros.posts.kotlin.extension.toast
 import io.petros.posts.kotlin.service.retrofit.WebService
 import io.petros.posts.kotlin.util.rx.RxSchedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-fun constructPostsAdapter(kodein: Kodein, context: Context): PostsAdapter = PostsAdapter(kodein) { context.toast("${it.id} ${it.title}") }
+fun constructPostsAdapter(kodein: Kodein): PostsAdapter = PostsAdapter(kodein)
 
 fun constructRxSchedulers(): RxSchedulers {
     return RxSchedulers(Schedulers.io(), Schedulers.computation(), Schedulers.trampoline(), AndroidSchedulers.mainThread())

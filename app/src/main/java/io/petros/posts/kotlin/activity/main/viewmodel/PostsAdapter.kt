@@ -8,7 +8,9 @@ import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.extension.inflate
 import io.petros.posts.kotlin.model.Post
 
-class PostsAdapter(override val kodein: Kodein, val listener: (Post) -> Unit) : KodeinAware, RecyclerView.Adapter<PostViewHolder>() {
+class PostsAdapter(override val kodein: Kodein) : KodeinAware, RecyclerView.Adapter<PostViewHolder>() {
+
+    lateinit var listener: OnViewClickListener
 
     val allPosts = ArrayList<Post>()
 

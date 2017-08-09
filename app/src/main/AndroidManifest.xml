@@ -26,14 +26,19 @@
 
         <activity
             android:name=".activity.main.MainActivity"
+            android:label="@string/main_activity__label"
             android:launchMode="singleTop"
-            android:label="@string/activity_label"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.post.PostActivity"
+            android:label="@string/post_activity__label"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

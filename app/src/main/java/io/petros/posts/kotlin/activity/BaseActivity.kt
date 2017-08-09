@@ -17,7 +17,6 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        setToolbar()
         setButterKnife()
         Timber.d("%s created. [Bundle: %s]", javaClass.simpleName, savedInstanceState)
     }
@@ -76,9 +75,21 @@ abstract class BaseActivity : KodeinAppCompatActivity() {
 
     // TOOLBAR // **************************************************************************************************************************
 
-    private fun setToolbar() {
+    protected fun setToolbar() {
         setSupportActionBar(toolbar)
         Timber.d("%s toolbar set.", javaClass.simpleName)
+    }
+
+    protected fun setToolbarWithActionBar() {
+        setSupportActionBar(toolbar)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(true)
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            Timber.d("%s toolbar with action bar set.", javaClass.simpleName)
+        } else {
+            Timber.w("Cannot get an action bar for this activity; verify that this activity has actually defined a toolbar.")
+        }
     }
 
     // FRAGMENT // *************************************************************************************************************************

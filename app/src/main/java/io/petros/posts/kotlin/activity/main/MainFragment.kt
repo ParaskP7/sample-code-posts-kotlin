@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.github.salomonbrys.kodein.instance
 import io.petros.posts.kotlin.R
 import io.petros.posts.kotlin.activity.BaseFragment
+import io.petros.posts.kotlin.activity.main.viewmodel.OnPostItemViewClickListener
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsAdapter
 import io.petros.posts.kotlin.activity.main.viewmodel.PostsViewModel
 import io.petros.posts.kotlin.databinding.FragmentMainBinding
@@ -41,6 +42,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, PostsViewModel>(), SwipeR
     }
 
     private fun setRecyclerView() {
+        postsAdapter.listener = OnPostItemViewClickListener(activity)
         binding.postsRecyclerView.adapter = postsAdapter
     }
 

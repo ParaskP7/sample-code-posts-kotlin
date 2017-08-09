@@ -4,6 +4,13 @@
 
     <!-- ACTIVITY // ******************************************************************************************************************* -->
 
-    <string name="activity_label">Posts</string>
+    <string name="main_activity__label">Posts</string>
+
+    <!-- POST ACTIVITY // ************************************************************************************************************** -->
+
+    <string name="post_activity__label">Post</string>
+    <string name="post_activity__title_label">Title:</string>
+    <string name="post_activity__body_label">Body:</string>
+    <string name="post_activity__comments_label">Comments:</string>
 
 </resources>
