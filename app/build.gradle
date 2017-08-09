@@ -72,7 +72,6 @@ dependencies {
     kapt deps.butterKnife.compiler
     implementation deps.rx.java
     implementation deps.rx.android
-    debugImplementation deps.rx.lint
     implementation deps.retrofit.runtime
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.rx
@@ -81,9 +80,10 @@ dependencies {
     implementation deps.image.circleView
     implementation deps.other.jodaTime
 
+    debugImplementation deps.lint.rx
     debugImplementation deps.leakCanary.op
+
     releaseImplementation deps.leakCanary.noOp
-    testImplementation deps.leakCanary.noOp
 
     testImplementation deps.test.junit
 

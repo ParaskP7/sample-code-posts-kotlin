@@ -39,7 +39,6 @@ ext.versions = [
         // ReactiveX
         rxAndroid       : '2.0.1',
         rxJava          : '2.1.2',
-        rxLint          : '1.4',
 
         // Network
         retrofit        : '2.3.0',
@@ -55,6 +54,9 @@ ext.versions = [
         jodaTime        : '2.9.9',
 
         // DEBUG IMPLEMENTATION // *********************************************************************************************************
+
+        // Lint
+        lintRx          : '1.4',
 
         // Leak Canary
         leakCanary      : '1.5.1',
@@ -135,6 +137,10 @@ ext.deps = [
         ],
 
         // DEBUG IMPLEMENTATION // *********************************************************************************************************
+
+        'lint'       : [
+                'rx': "nl.littlerobots.rxlint:rxlint:$versions.lintRx",
+        ],
 
         'leakCanary' : [
                 'op'  : "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
