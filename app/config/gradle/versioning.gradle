@@ -11,7 +11,7 @@ ext.app = [
 ext.versions = [
 
         // Plugins
-        androidPlugin   : '3.0.0-alpha9',
+        androidPlugin   : '3.0.0-beta1',
 
         // Quality Plugins
         jacocoPlugin    : '0.7.9',
