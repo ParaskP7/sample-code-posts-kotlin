@@ -38,7 +38,7 @@ ext.versions = [
 
         // ReactiveX
         rxAndroid       : '2.0.1',
-        rxJava          : '2.1.2',
+        rxJava          : '2.1.3',
 
         // Network
         retrofit        : '2.3.0',
