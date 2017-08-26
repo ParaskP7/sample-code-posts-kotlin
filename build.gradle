@@ -2,7 +2,7 @@ apply from: 'app/config/gradle/versioning.gradle'
 
 buildscript {
 
-    ext.kotlinPluginVersion = '1.1.4'
+    ext.kotlinPluginVersion = '1.1.4-2'
     ext.androidPluginVersion = '3.0.0-beta3'
     ext.gradleVersionsPluginVersion = '0.15.0'
 
