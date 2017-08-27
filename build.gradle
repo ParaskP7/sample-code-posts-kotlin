@@ -4,7 +4,8 @@ buildscript {
 
     ext.kotlinPluginVersion = '1.1.4-2'
     ext.androidPluginVersion = '3.0.0-beta3'
-    ext.gradleVersionsPluginVersion = '0.15.0'
+    ext.versionsPluginVersion = '0.15.0'
+    ext.dexcountPluginVersion = '0.7.3'
 
     repositories {
         google()
@@ -16,7 +17,8 @@ buildscript {
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinPluginVersion"
         classpath "com.android.tools.build:gradle:$androidPluginVersion"
-        classpath "com.github.ben-manes:gradle-versions-plugin:$gradleVersionsPluginVersion"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$dexcountPluginVersion"
 
     }
 
