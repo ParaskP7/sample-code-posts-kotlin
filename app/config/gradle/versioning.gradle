@@ -11,7 +11,7 @@ ext.app = [
 ext.versions = [
 
         // Plugins
-        androidPlugin   : '3.0.0-beta3',
+        androidPlugin   : '3.0.0-beta5',
 
         // Quality Plugins
         jacocoPlugin    : '0.7.9',
@@ -25,10 +25,10 @@ ext.versions = [
         // IMPLEMENTATION // ***************************************************************************************************************
 
         // Kotlin
-        kotlin          : '1.1.4-2',
+        kotlin          : '1.1.4-3',
 
         // Android
-        supportLibrary  : '26.0.1',
+        supportLibrary  : '26.0.2',
         constraintLayout: '1.0.2',
         arch            : '1.0.0-alpha8',
 
@@ -47,7 +47,7 @@ ext.versions = [
         timber          : '4.5.1',
 
         // Image
-        glide           : '4.0.0',
+        glide           : '4.1.1',
         circleView      : '2.1.0',
 
         // Other
@@ -69,7 +69,7 @@ ext.versions = [
         // ANDROID TEST IMPLEMENTATION // **************************************************************************************************
 
         // Android Test
-        espresso        : '3.0.0',
+        espresso        : '3.0.1',
 
 ]
 
@@ -78,7 +78,7 @@ ext.deps = [
         // IMPLEMENTATION // ***************************************************************************************************************
 
         'kotlin'     : [
-                'jre': "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin",
+                'jre': "org.jetbrains.kotlin:kotlin-stdlib-jre8:$versions.kotlin",
         ],
 
         'support'    : [
@@ -114,7 +114,6 @@ ext.deps = [
         'rx'         : [
                 'java'   : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
                 'android': "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
-                'lint'   : "nl.littlerobots.rxlint:rxlint:$versions.rxLint",
         ],
 
         'retrofit'   : [
