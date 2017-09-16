@@ -1,8 +1,6 @@
 package io.petros.posts.kotlin.activity
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Intent
 import android.databinding.ViewDataBinding
 import android.os.Bundle
@@ -14,20 +12,12 @@ import com.github.salomonbrys.kodein.KodeinInjector
 import com.github.salomonbrys.kodein.android.appKodein
 import timber.log.Timber
 
-abstract class BaseActivity<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : AppCompatActivity(), LifecycleRegistryOwner {
+abstract class BaseActivity<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : AppCompatActivity() {
 
     protected val injector = KodeinInjector()
 
     protected lateinit var binding: BINDING
     protected lateinit var viewModel: VIEW_MODEL
-
-    // LIFECYCLE REGISTRY // ***************************************************************************************************************
-
-    private val lifecycleRegistry = LifecycleRegistry(this)
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return lifecycleRegistry
-    }
 
     // LIFECYCLE // ************************************************************************************************************************
 
