@@ -1,10 +1,10 @@
 package io.petros.posts.kotlin.activity
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.LifecycleFragment
 import android.content.Context
 import android.databinding.ViewDataBinding
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.github.salomonbrys.kodein.KodeinInjector
 import com.github.salomonbrys.kodein.android.appKodein
 import timber.log.Timber
 
-abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : LifecycleFragment() {
+abstract class BaseFragment<BINDING : ViewDataBinding, VIEW_MODEL : BaseViewModel> : Fragment() {
 
     protected val injector = KodeinInjector()
 
