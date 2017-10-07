@@ -61,7 +61,6 @@ dependencies {
     implementation deps.support.design
     implementation deps.support.cardView
     kapt deps.databinding.compiler
-    implementation deps.arch.lifecycleRuntime
     implementation deps.arch.lifecycleExtensions
     kapt deps.arch.lifecycleCompiler
     implementation deps.arch.roomRuntime

@@ -30,8 +30,7 @@ ext.versions = [
         // Android
         supportLibrary  : '26.1.0',
         constraintLayout: '1.0.2',
-        arch            : '1.0.0',
-        archAlpha       : '1.0.0-alpha9-1',
+        arch            : '1.0.0-beta2',
 
         // Important
         kodein          : '4.1.0',
@@ -94,12 +93,11 @@ ext.deps = [
         ],
 
         'arch'       : [
-                'lifecycleRuntime'   : "android.arch.lifecycle:runtime:$versions.arch",
-                'lifecycleExtensions': "android.arch.lifecycle:extensions:$versions.archAlpha",
-                'lifecycleCompiler'  : "android.arch.lifecycle:compiler:$versions.archAlpha",
-                'roomRuntime'        : "android.arch.persistence.room:runtime:$versions.archAlpha",
-                'roomCompiler'       : "android.arch.persistence.room:compiler:$versions.archAlpha",
-                'roomRx'             : "android.arch.persistence.room:rxjava2:$versions.archAlpha",
+                'lifecycleExtensions': "android.arch.lifecycle:extensions:$versions.arch",
+                'lifecycleCompiler'  : "android.arch.lifecycle:compiler:$versions.arch",
+                'roomRuntime'        : "android.arch.persistence.room:runtime:$versions.arch",
+                'roomCompiler'       : "android.arch.persistence.room:compiler:$versions.arch",
+                'roomRx'             : "android.arch.persistence.room:rxjava2:$versions.arch",
         ],
 
         'kodein'     : [
